@@ -29,11 +29,11 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 **Purpose**: Stand up the Next.js project scaffold — none exists in this repository yet (per plan.md's noted pre-existing condition).
 
-- [ ] T001 Initialize Next.js (App Router) + TypeScript project scaffold at repository root: `package.json`, `tsconfig.json`, `next.config.ts`, base `app/` directory
-- [ ] T002 [P] Configure Tailwind CSS: `tailwind.config.ts`, `postcss.config.js`, `app/globals.css`
-- [ ] T003 [P] Configure Vitest + React Testing Library: `vitest.config.ts`, `tests/setup.ts`, `test` script in `package.json`
-- [ ] T004 [P] Configure ESLint + Prettier per project conventions: `.eslintrc.json`, `.prettierrc`
-- [ ] T005 Add minimal offline-capable PWA setup sufficient to cache `/start` for the offline shell: `public/manifest.webmanifest` + service worker registration (depends on T001)
+- [X] T001 Initialize Next.js (App Router) + TypeScript project scaffold at repository root: `package.json`, `tsconfig.json`, `next.config.ts`, base `app/` directory
+- [X] T002 [P] Configure Tailwind CSS: `tailwind.config.ts`, `postcss.config.js`, `app/globals.css`
+- [X] T003 [P] Configure Vitest + React Testing Library: `vitest.config.ts`, `tests/setup.ts`, `test` script in `package.json`
+- [X] T004 [P] Configure ESLint + Prettier per project conventions: `.eslintrc.json`, `.prettierrc`
+- [X] T005 Add minimal offline-capable PWA setup sufficient to cache `/start` for the offline shell: `public/manifest.webmanifest` + service worker registration (depends on T001)
 
 **Checkpoint**: Project builds and runs (`npm run dev`) with linting and test runner wired up.
 
@@ -45,12 +45,12 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T006 [P] Define `ChecklistItem` type and 2-3 placeholder items per group (Documents, Money, Phone, Transport, Health) in `data/checklist.ts`, per `contracts/checklist-data-contract.md` and spec.md FR-014 (placeholder-only content; external/official links only, per research.md)
-- [ ] T007 [P] Define the fixed group display order and labels (`GROUP_ORDER`) in `lib/checklist/groups.ts`, per research.md's group-ordering decision
-- [ ] T008 [P] Implement the persistence module (`readCompletedIds`, `toggleItem`, `filterToKnownIds`) in `lib/checklist/storage.ts`, per `contracts/storage-contract.md`
-- [ ] T009 [P] Unit tests for the persistence module — read/write/toggle, stale-id filtering, storage-unavailable fallback — in `tests/unit/checklist/storage.test.ts` (depends on T008)
-- [ ] T010 Create minimal root layout (`app/layout.tsx`): global stylesheet import, manifest link, base metadata (depends on T001-T005)
-- [ ] T011 Create the `/start` route shell (`app/start/page.tsx`) ready to render the checklist (depends on T010)
+- [X] T006 [P] Define `ChecklistItem` type and 2-3 placeholder items per group (Documents, Money, Phone, Transport, Health) in `data/checklist.ts`, per `contracts/checklist-data-contract.md` and spec.md FR-014 (placeholder-only content; external/official links only, per research.md)
+- [X] T007 [P] Define the fixed group display order and labels (`GROUP_ORDER`) in `lib/checklist/groups.ts`, per research.md's group-ordering decision
+- [X] T008 [P] Implement the persistence module (`readCompletedIds`, `toggleItem`, `filterToKnownIds`) in `lib/checklist/storage.ts`, per `contracts/storage-contract.md`
+- [X] T009 [P] Unit tests for the persistence module — read/write/toggle, stale-id filtering, storage-unavailable fallback — in `tests/unit/checklist/storage.test.ts` (depends on T008)
+- [X] T010 Create minimal root layout (`app/layout.tsx`): global stylesheet import, manifest link, base metadata (depends on T001-T005)
+- [X] T011 Create the `/start` route shell (`app/start/page.tsx`) ready to render the checklist (depends on T010)
 
 **Checkpoint**: Data, persistence, and routing exist and are tested — user story implementation can now begin.
 
@@ -64,12 +64,12 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Implement `ChecklistItemRow` display (title, "what & why" detail, non-interactive checkbox indicator) in `components/checklist/ChecklistItemRow.tsx` (depends on T006)
-- [ ] T013 [US1] Implement `ChecklistGroup` rendering a group heading + its items in `order` sequence in `components/checklist/ChecklistGroup.tsx` (depends on T012)
-- [ ] T014 [US1] Implement `ChecklistPage` assembling groups in `GROUP_ORDER` sequence from `data/checklist.ts` in `components/checklist/ChecklistPage.tsx` (depends on T007, T013)
-- [ ] T015 [US1] Wire `app/start/page.tsx` to render `<ChecklistPage />` (depends on T011, T014)
-- [ ] T016 [US1] Apply mobile-first (~380px) styling across checklist components — spacing, text wrapping, no horizontal scroll (depends on T012, T013, T014)
-- [ ] T017 [P] [US1] Component test: `/start` renders all groups/items in stable order, all items initially unchecked, in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T014)
+- [X] T012 [P] [US1] Implement `ChecklistItemRow` display (title, "what & why" detail, non-interactive checkbox indicator) in `components/checklist/ChecklistItemRow.tsx` (depends on T006)
+- [X] T013 [US1] Implement `ChecklistGroup` rendering a group heading + its items in `order` sequence in `components/checklist/ChecklistGroup.tsx` (depends on T012)
+- [X] T014 [US1] Implement `ChecklistPage` assembling groups in `GROUP_ORDER` sequence from `data/checklist.ts` in `components/checklist/ChecklistPage.tsx` (depends on T007, T013)
+- [X] T015 [US1] Wire `app/start/page.tsx` to render `<ChecklistPage />` (depends on T011, T014)
+- [X] T016 [US1] Apply mobile-first (~380px) styling across checklist components — spacing, text wrapping, no horizontal scroll (depends on T012, T013, T014)
+- [X] T017 [P] [US1] Component test: `/start` renders all groups/items in stable order, all items initially unchecked, in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T014)
 
 **Checkpoint**: User Story 1 is fully functional and testable independently — the checklist is scannable, even with no interactivity yet.
 
@@ -83,10 +83,10 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 ### Implementation for User Story 2
 
-- [ ] T018 [US2] Initialize `ChecklistPage`'s checked-state on mount from `storage.readCompletedIds()` filtered through `storage.filterToKnownIds()` in `components/checklist/ChecklistPage.tsx` (depends on T008, T014)
-- [ ] T019 [US2] Wire toggle interaction in `ChecklistItemRow` (calls `storage.toggleItem`, updates visual state immediately) in `components/checklist/ChecklistItemRow.tsx` (depends on T012, T018)
-- [ ] T020 [P] [US2] Component test: toggling an item persists across a simulated remount/reload in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T019)
-- [ ] T021 [P] [US2] Component test: toggle still updates visual state with no thrown error when storage is mocked as unavailable/throwing, in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T019)
+- [X] T018 [US2] Initialize `ChecklistPage`'s checked-state on mount from `storage.readCompletedIds()` filtered through `storage.filterToKnownIds()` in `components/checklist/ChecklistPage.tsx` (depends on T008, T014)
+- [X] T019 [US2] Wire toggle interaction in `ChecklistItemRow` (calls `storage.toggleItem`, updates visual state immediately) in `components/checklist/ChecklistItemRow.tsx` (depends on T012, T018)
+- [X] T020 [P] [US2] Component test: toggling an item persists across a simulated remount/reload in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T019)
+- [X] T021 [P] [US2] Component test: toggle still updates visual state with no thrown error when storage is mocked as unavailable/throwing, in `tests/unit/checklist/ChecklistPage.test.tsx` (depends on T019)
 
 **Checkpoint**: User Stories 1 AND 2 both work independently — the checklist is scannable and progress persists.
 
@@ -100,10 +100,10 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 ### Implementation for User Story 3
 
-- [ ] T022 [P] [US3] Implement progress computation (`completedCount`, `totalCount`, `isComplete`) in `lib/checklist/progress.ts` (depends on T006)
-- [ ] T023 [US3] Implement `ProgressSummary` component (count display + distinct "all done" acknowledgment) in `components/checklist/ProgressSummary.tsx` (depends on T022)
-- [ ] T024 [US3] Wire `ProgressSummary` into `ChecklistPage`, recomputing immediately on every toggle, in `components/checklist/ChecklistPage.tsx` (depends on T019, T023)
-- [ ] T025 [P] [US3] Unit test progress computation at 0%, partial, and 100% completion in `tests/unit/checklist/progress.test.ts` (depends on T022)
+- [X] T022 [P] [US3] Implement progress computation (`completedCount`, `totalCount`, `isComplete`) in `lib/checklist/progress.ts` (depends on T006)
+- [X] T023 [US3] Implement `ProgressSummary` component (count display + distinct "all done" acknowledgment) in `components/checklist/ProgressSummary.tsx` (depends on T022)
+- [X] T024 [US3] Wire `ProgressSummary` into `ChecklistPage`, recomputing immediately on every toggle, in `components/checklist/ChecklistPage.tsx` (depends on T019, T023)
+- [X] T025 [P] [US3] Unit test progress computation at 0%, partial, and 100% completion in `tests/unit/checklist/progress.test.ts` (depends on T022)
 
 **Checkpoint**: User Stories 1-3 all work independently — scannable, persistent, and encouraging.
 
@@ -117,8 +117,8 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 ### Implementation for User Story 4
 
-- [ ] T026 [US4] Add link rendering/navigation behavior to `ChecklistItemRow` — items with `link` render a working anchor to that destination; items without `link` render none — in `components/checklist/ChecklistItemRow.tsx` (depends on T012, T019)
-- [ ] T027 [P] [US4] Component test: item with `link` renders correct `href`; item without `link` renders no navigational element, in `tests/unit/checklist/ChecklistItemRow.test.tsx` (depends on T026)
+- [X] T026 [US4] Add link rendering/navigation behavior to `ChecklistItemRow` — items with `link` render a working anchor to that destination; items without `link` render none — in `components/checklist/ChecklistItemRow.tsx` (depends on T012, T019)
+- [X] T027 [P] [US4] Component test: item with `link` renders correct `href`; item without `link` renders no navigational element, in `tests/unit/checklist/ChecklistItemRow.test.tsx` (depends on T026)
 
 **Checkpoint**: All four user stories are independently functional.
 
@@ -128,8 +128,8 @@ Single Next.js project at repository root, per `plan.md`'s Project Structure: `a
 
 **Purpose**: Quality gates that span every story, per constitution Principle V (Mobile-First Quality).
 
-- [ ] T028 [P] Add per-route metadata (title, meta description) for `/start` in `app/start/page.tsx`
-- [ ] T029 [P] Accessibility pass: accessible labels/roles on checkbox controls, full keyboard navigability across `components/checklist/*.tsx`
+- [X] T028 [P] Add per-route metadata (title, meta description) for `/start` in `app/start/page.tsx`
+- [X] T029 [P] Accessibility pass: accessible labels/roles on checkbox controls, full keyboard navigability across `components/checklist/*.tsx`
 - [ ] T030 Run all 8 manual validation scenarios in `quickstart.md` end-to-end and record results
 - [ ] T031 [P] Run lint + typecheck across all new files (`npm run lint`, `npm run typecheck`)
 - [ ] T032 Verify Lighthouse mobile scores for `/start` (Performance/Accessibility/SEO ≥ 90) per constitution Principle V
