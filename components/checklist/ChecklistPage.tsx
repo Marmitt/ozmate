@@ -32,20 +32,22 @@ export function ChecklistPage() {
   const progress = computeProgress(checklistItems.length, completedIds);
 
   return (
-    <main className="mx-auto max-w-md px-4 py-6">
-      <h1 className="text-xl font-bold text-gray-900">
+    <main className="mx-auto max-w-md px-4 py-8">
+      <h1 className="text-2xl font-bold tracking-tight text-ink">
         First 30 Days Checklist
       </h1>
       <ProgressSummary progress={progress} />
-      {GROUP_ORDER.map((group) => (
-        <ChecklistGroup
-          key={group.key}
-          label={group.label}
-          items={checklistItems.filter((item) => item.group === group.key)}
-          completedIds={completedIds}
-          onToggle={handleToggle}
-        />
-      ))}
+      <div className="divide-y divide-line">
+        {GROUP_ORDER.map((group) => (
+          <ChecklistGroup
+            key={group.key}
+            label={group.label}
+            items={checklistItems.filter((item) => item.group === group.key)}
+            completedIds={completedIds}
+            onToggle={handleToggle}
+          />
+        ))}
+      </div>
     </main>
   );
 }

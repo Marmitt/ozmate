@@ -18,8 +18,8 @@ export function ChecklistGroup({
 
   return (
     <section className="py-4">
-      <h2 className="text-lg font-semibold text-gray-900">{label}</h2>
-      <ul className="mt-2 divide-y divide-gray-100">
+      <h2 className="text-lg font-semibold text-ink">{label}</h2>
+      <ul className="mt-2 divide-y divide-line">
         {sortedItems.map((item) => (
           <ChecklistItemRow
             key={item.id}

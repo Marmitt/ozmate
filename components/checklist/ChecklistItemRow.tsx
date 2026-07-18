@@ -22,19 +22,22 @@ export function ChecklistItemRow({
         type="checkbox"
         checked={checked}
         onChange={() => onToggle(item.id)}
-        className="mt-1 h-5 w-5 shrink-0"
+        className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-accent"
       />
       <div className="min-w-0 flex-1">
-        <label htmlFor={inputId} className="block font-medium text-gray-900">
+        <label
+          htmlFor={inputId}
+          className="block cursor-pointer font-medium text-ink"
+        >
           {item.title}
         </label>
-        <p className="mt-0.5 text-sm text-gray-600">{item.detail}</p>
+        <p className="mt-0.5 text-sm text-ink-muted">{item.detail}</p>
         {item.link && (
           <a
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-block text-sm text-blue-600 underline"
+            className="mt-1 inline-block text-sm text-ochre-text underline"
           >
             Learn more
           </a>

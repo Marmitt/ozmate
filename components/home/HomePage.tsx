@@ -30,9 +30,9 @@ const pillars: PillarLink[] = [
 
 export function HomePage() {
   return (
-    <main className="mx-auto max-w-md px-4 py-6">
-      <h1 className="text-2xl font-bold text-gray-900">OZMate</h1>
-      <p className="mt-2 text-gray-600">
+    <main className="mx-auto max-w-md px-4 py-8">
+      <h1 className="text-3xl font-bold tracking-tight text-ink">OZMate</h1>
+      <p className="mt-2 text-ink-muted">
         A practical survival guide for newcomers to Australia — what to sort
         out first, how to live cheap, and where to find work.
       </p>
@@ -43,10 +43,10 @@ export function HomePage() {
             <Link
               key={pillar.href}
               href={pillar.href}
-              className="block rounded-lg border border-gray-200 p-4 hover:border-gray-300"
+              className="block rounded-xl border border-accent bg-accent-soft/50 p-4 transition-colors hover:bg-accent-soft"
             >
-              <h2 className="font-semibold text-gray-900">{pillar.title}</h2>
-              <p className="mt-1 text-sm text-gray-600">
+              <h2 className="font-semibold text-ink">{pillar.title}</h2>
+              <p className="mt-1 text-sm text-ink-muted">
                 {pillar.description}
               </p>
             </Link>
@@ -54,17 +54,17 @@ export function HomePage() {
             <div
               key={pillar.href}
               aria-disabled="true"
-              className="rounded-lg border border-gray-100 p-4 opacity-60"
+              className="rounded-xl border border-line bg-bg-alt p-4"
             >
               <div className="flex items-center justify-between">
-                <h2 className="font-semibold text-gray-900">
+                <h2 className="font-semibold text-ink-muted">
                   {pillar.title}
                 </h2>
-                <span className="text-xs font-medium text-gray-400">
+                <span className="rounded-full bg-ochre-soft px-2 py-0.5 text-xs font-semibold text-ochre-text">
                   Coming soon
                 </span>
               </div>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-sm text-ink-dim">
                 {pillar.description}
               </p>
             </div>
