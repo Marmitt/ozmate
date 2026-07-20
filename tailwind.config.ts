@@ -41,9 +41,35 @@ const config: Config = {
         },
         danger: "var(--danger)",
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "var(--text)",
+            "--tw-prose-headings": "var(--text)",
+            "--tw-prose-links": "var(--accent-deep)",
+            "--tw-prose-bold": "var(--text)",
+            "--tw-prose-counters": "var(--text-muted)",
+            "--tw-prose-bullets": "var(--border-strong)",
+            "--tw-prose-hr": "var(--border)",
+            "--tw-prose-quotes": "var(--text-muted)",
+            "--tw-prose-quote-borders": "var(--ochre)",
+            "--tw-prose-captions": "var(--text-muted)",
+            "--tw-prose-code": "var(--text)",
+            "--tw-prose-th-borders": "var(--border-strong)",
+            "--tw-prose-td-borders": "var(--border)",
+            maxWidth: "45rem",
+            fontSize: "1rem",
+            lineHeight: "1.6",
+            a: {
+              fontWeight: "600",
+              textDecoration: "underline",
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;

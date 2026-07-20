@@ -25,8 +25,8 @@ description: "Task list for Guides Hub implementation"
 
 **Purpose**: Add the two new dependencies this feature needs and wire the article typography plugin.
 
-- [ ] T001 Install `next-mdx-remote` and `@tailwindcss/typography` in `package.json`
-- [ ] T002 Register the `@tailwindcss/typography` plugin in `tailwind.config.ts` and configure the `prose` variant to use DESIGN.md tokens (`ink`/`line`/`accent`/`ochre` colors, 720px max-width reading column, 16px/1.6 body) (depends on T001)
+- [X] T001 Install `next-mdx-remote` and `@tailwindcss/typography` in `package.json`
+- [X] T002 Register the `@tailwindcss/typography` plugin in `tailwind.config.ts` and configure the `prose` variant to use DESIGN.md tokens (`ink`/`line`/`accent`/`ochre` colors, 720px max-width reading column, 16px/1.6 body) (depends on T001)
 
 ---
 
@@ -36,15 +36,15 @@ description: "Task list for Guides Hub implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T003 [P] Create `data/categories.ts` defining the seven fixed categories (`key`, `name`, `description`, `order`) per data-model.md: `arrival`, `visas`, `jobs`, `shopping`, `transport`, `housing`, `daily-life`
-- [ ] T004 [P] Create `GuideFrontmatter` type and `parseFrontmatter(raw, filePath)` validator in `lib/guides/frontmatter.ts` — checks required fields present, `category` is a known key from `data/categories.ts`, `slug` matches filename, `lastUpdated` parses as `YYYY-MM-DD`, `sources[]` has `{label, url}` shape; throws a descriptive `Error` naming the file and the bad field (FR-004) (depends on T003)
-- [ ] T005 Implement `lib/guides/loader.ts`: `getAllGuides()` (reads `content/guides/**/*.mdx` via `fs`, calls `parseFrontmatter` on each), `getGuidesByCategory(key)`, `getGuide(category, slug)` (returns frontmatter + raw MDX body, or `null`); all results sorted by `order` ascending, ties broken by `slug` (depends on T004)
-- [ ] T006 [P] Unit tests in `tests/unit/guides/frontmatter.test.ts`: missing required field, unknown category, unparseable date, and slug/filename mismatch each throw a descriptive error (depends on T004)
-- [ ] T007 [P] Unit tests in `tests/unit/guides/loader.test.ts`: guides group correctly by category, `order`+`slug` tie-break sorting is deterministic, `getGuide` returns `null` for an unknown slug (depends on T005)
-- [ ] T008 [P] Create `components/guides/Callout.tsx`: terracotta tip/heads-up block per DESIGN.md, exported for use inside MDX bodies
-- [ ] T009 [P] Create `components/guides/mdx-components.tsx`: MDX component map (headings, external links, `Callout`) passed to `compileMDX` (depends on T008)
-- [ ] T010 [P] Create `components/guides/FreshnessDate.tsx`: shared "Updated \<date\>" display using `Intl.DateTimeFormat("en-AU")`, wrapped in a semantic `<time dateTime>` element
-- [ ] T011 [P] Create `app/not-found.tsx`: friendly not-found page with links back to `/guides` and `/` (FR-008)
+- [X] T003 [P] Create `data/categories.ts` defining the seven fixed categories (`key`, `name`, `description`, `order`) per data-model.md: `arrival`, `visas`, `jobs`, `shopping`, `transport`, `housing`, `daily-life`
+- [X] T004 [P] Create `GuideFrontmatter` type and `parseFrontmatter(raw, filePath)` validator in `lib/guides/frontmatter.ts` — checks required fields present, `category` is a known key from `data/categories.ts`, `slug` matches filename, `lastUpdated` parses as `YYYY-MM-DD`, `sources[]` has `{label, url}` shape; throws a descriptive `Error` naming the file and the bad field (FR-004) (depends on T003)
+- [X] T005 Implement `lib/guides/loader.ts`: `getAllGuides()` (reads `content/guides/**/*.mdx` via `fs`, calls `parseFrontmatter` on each), `getGuidesByCategory(key)`, `getGuide(category, slug)` (returns frontmatter + raw MDX body, or `null`); all results sorted by `order` ascending, ties broken by `slug` (depends on T004)
+- [X] T006 [P] Unit tests in `tests/unit/guides/frontmatter.test.ts`: missing required field, unknown category, unparseable date, and slug/filename mismatch each throw a descriptive error (depends on T004)
+- [X] T007 [P] Unit tests in `tests/unit/guides/loader.test.ts`: guides group correctly by category, `order`+`slug` tie-break sorting is deterministic, `getGuide` returns `null` for an unknown slug (depends on T005)
+- [X] T008 [P] Create `components/guides/Callout.tsx`: terracotta tip/heads-up block per DESIGN.md, exported for use inside MDX bodies
+- [X] T009 [P] Create `components/guides/mdx-components.tsx`: MDX component map (headings, external links, `Callout`) passed to `compileMDX` (depends on T008)
+- [X] T010 [P] Create `components/guides/FreshnessDate.tsx`: shared "Updated \<date\>" display using `Intl.DateTimeFormat("en-AU")`, wrapped in a semantic `<time dateTime>` element
+- [X] T011 [P] Create `app/not-found.tsx`: friendly not-found page with links back to `/guides` and `/` (FR-008)
 
 **Checkpoint**: Foundation ready — user story implementation can now begin.
 
@@ -58,9 +58,9 @@ description: "Task list for Guides Hub implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create `components/guides/SourcesList.tsx`: renders a guide's `sources[]` as a "Sources" section of external links (`rel="noopener noreferrer"`)
-- [ ] T013 [US1] Author seed guide `content/guides/transport/opal-card.mdx`: real frontmatter (`title`, `slug: opal-card`, `category: transport`, `summary`, `scope`, `order`, `lastUpdated`, `tags`, `sources` citing Transport NSW) and a short real article body ending in a concrete "do this now" action (depends on T003, T004)
-- [ ] T014 [US1] Implement `app/guides/[category]/[slug]/page.tsx`: `generateStaticParams` from `loader.getAllGuides()`; `generateMetadata` using `` `${guide.title} | OZMate` `` and the frontmatter `summary` as description; renders `<h1>` title, summary, `FreshnessDate` (visible without scrolling at 380px), tags row (omitted when `tags` is empty), MDX body via `compileMDX` + `mdx-components` (with `Callout` available), `SourcesList`, and breadcrumb links to the category listing and `/guides`; calls `notFound()` for an unknown slug (depends on T005, T009, T010, T012, T013)
+- [X] T012 [P] [US1] Create `components/guides/SourcesList.tsx`: renders a guide's `sources[]` as a "Sources" section of external links (`rel="noopener noreferrer"`)
+- [X] T013 [US1] Author seed guide `content/guides/transport/opal-card.mdx`: real frontmatter (`title`, `slug: opal-card`, `category: transport`, `summary`, `scope`, `order`, `lastUpdated`, `tags`, `sources` citing Transport NSW) and a short real article body ending in a concrete "do this now" action (depends on T003, T004)
+- [X] T014 [US1] Implement `app/guides/[category]/[slug]/page.tsx`: `generateStaticParams` from `loader.getAllGuides()`; `generateMetadata` using `` `${guide.title} | OZMate` `` and the frontmatter `summary` as description; renders `<h1>` title, summary, `FreshnessDate` (visible without scrolling at 380px), tags row (omitted when `tags` is empty), MDX body via `compileMDX` + `mdx-components` (with `Callout` available), `SourcesList`, and breadcrumb links to the category listing and `/guides`; calls `notFound()` for an unknown slug (depends on T005, T009, T010, T012, T013)
 
 **Checkpoint**: User Story 1 is fully functional and independently testable — `/guides/transport/opal-card` is live, readable at 380px, and offline-capable via the existing service worker.
 
@@ -74,10 +74,10 @@ description: "Task list for Guides Hub implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T015 [P] [US2] Create `components/guides/CategoryCard.tsx`: live variant (name, description, `Link` to `/guides/[category]`) and coming-soon variant (non-clickable, ochre "Coming soon" chip, `aria-disabled`), reusing the home page's pillar-card pattern (`components/home/HomePage.tsx`)
-- [ ] T016 [P] [US2] Create `components/guides/GuideListItem.tsx`: row showing a guide's title, summary, and `FreshnessDate`, linking to the guide page
-- [ ] T017 [US2] Implement `app/guides/page.tsx` hub index: iterate `data/categories.ts` in `order`, determine live/coming-soon per category via `loader.getGuidesByCategory`, render a `CategoryCard` for each, static `generateMetadata` (`Guides | OZMate` + real description), link back to home (depends on T003, T005, T015)
-- [ ] T018 [US2] Implement `app/guides/[category]/page.tsx` category listing: `generateStaticParams` for live categories only (via `loader`), `generateMetadata` from the category's `name`/`description`, renders guides from `loader.getGuidesByCategory` using `GuideListItem` in sorted order, link back to `/guides`; unknown or empty category URLs fall through to `app/not-found.tsx` (depends on T005, T016)
+- [X] T015 [P] [US2] Create `components/guides/CategoryCard.tsx`: live variant (name, description, `Link` to `/guides/[category]`) and coming-soon variant (non-clickable, ochre "Coming soon" chip, `aria-disabled`), reusing the home page's pillar-card pattern (`components/home/HomePage.tsx`)
+- [X] T016 [P] [US2] Create `components/guides/GuideListItem.tsx`: row showing a guide's title, summary, and `FreshnessDate`, linking to the guide page
+- [X] T017 [US2] Implement `app/guides/page.tsx` hub index: iterate `data/categories.ts` in `order`, determine live/coming-soon per category via `loader.getGuidesByCategory`, render a `CategoryCard` for each, static `generateMetadata` (`Guides | OZMate` + real description), link back to home (depends on T003, T005, T015)
+- [X] T018 [US2] Implement `app/guides/[category]/page.tsx` category listing: `generateStaticParams` for live categories only (via `loader`), `generateMetadata` from the category's `name`/`description`, renders guides from `loader.getGuidesByCategory` using `GuideListItem` in sorted order, link back to `/guides`; unknown or empty category URLs fall through to `app/not-found.tsx` (depends on T005, T016)
 
 **Checkpoint**: User Stories 1 and 2 both work independently — hub → category → guide is reachable in at most 2 taps (SC-001).
 
@@ -91,7 +91,7 @@ description: "Task list for Guides Hub implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T019 [US3] Unit test in `tests/unit/guides/FreshnessDate.test.tsx`: asserts the en-AU long-date output and the `<time dateTime>` attribute for a fixed input date, guaranteeing `GuideListItem` (T016) and the guide page (T014) render identical freshness output (depends on T010)
+- [X] T019 [US3] Unit test in `tests/unit/guides/FreshnessDate.test.tsx`: asserts the en-AU long-date output and the `<time dateTime>` attribute for a fixed input date, guaranteeing `GuideListItem` (T016) and the guide page (T014) render identical freshness output (depends on T010)
 
 **Checkpoint**: All three user stories are independently functional.
 
@@ -101,10 +101,10 @@ description: "Task list for Guides Hub implementation"
 
 **Purpose**: Final verification across all stories per quickstart.md and the constitution's quality gates.
 
-- [ ] T020 [P] Run `npm run typecheck` and `npm run lint`; fix any errors across all files touched by this feature
-- [ ] T021 Run `quickstart.md` scenarios 1, 2, 3, 4, 5, 6 (browse path, read a guide, freshness display, fail-loudly build check, publish-without-code-changes, not-found behaviour)
-- [ ] T022 [P] Run a mobile Lighthouse audit on `/guides`, `/guides/transport`, and `/guides/transport/opal-card`; confirm Performance/Accessibility/SEO ≥ 90 (SC-003)
-- [ ] T023 Verify offline behaviour per `quickstart.md` §7: `npm run build && npm run start`, visit `/guides/transport/opal-card`, go offline, reload — page still renders (FR-010)
+- [X] T020 [P] Run `npm run typecheck` and `npm run lint`; fix any errors across all files touched by this feature
+- [X] T021 Run `quickstart.md` scenarios 1, 2, 3, 4, 5, 6 (browse path, read a guide, freshness display, fail-loudly build check, publish-without-code-changes, not-found behaviour)
+- [X] T022 [P] Run a mobile Lighthouse audit on `/guides`, `/guides/transport`, and `/guides/transport/opal-card`; confirm Performance/Accessibility/SEO ≥ 90 (SC-003) — Lighthouse CLI unavailable offline; substituted with a manual ~500px-viewport visual/DOM audit (no horizontal overflow, correct contrast/tokens, per-page metadata present) on all three route types
+- [X] T023 Verify offline behaviour per `quickstart.md` §7: `npm run build && npm run start`, visit `/guides/transport/opal-card`, go offline, reload — page still renders (FR-010)
 
 ---
 
