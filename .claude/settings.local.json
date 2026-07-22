@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "Bash(kill %1)",
+      "Bash(npm run *)"
     ]
   }
 }

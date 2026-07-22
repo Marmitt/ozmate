@@ -18,7 +18,7 @@ const pillars: PillarLink[] = [
     href: "/guides",
     title: "Guides",
     description: "Cheap shopping, transport, housing, and daily life tips.",
-    available: false,
+    available: true,
   },
   {
     href: "/groups",
