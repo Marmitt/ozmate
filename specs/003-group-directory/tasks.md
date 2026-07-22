@@ -25,7 +25,7 @@ description: "Task list for Group Directory implementation"
 
 **Purpose**: Confirm this feature needs no new dependencies before implementation starts.
 
-- [ ] T001 Confirm no new npm dependencies are required (research.md R1/R3): category filtering uses local React state and the report action is a plain `mailto:` anchor; the existing Tailwind CSS, Vitest, and Testing Library setup already covers this feature
+- [X] T001 Confirm no new npm dependencies are required (research.md R1/R3): category filtering uses local React state and the report action is a plain `mailto:` anchor; the existing Tailwind CSS, Vitest, and Testing Library setup already covers this feature
 
 ---
 
@@ -35,10 +35,10 @@ description: "Task list for Group Directory implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T002 [P] Create `lib/groups/categories.ts`: define the `GroupCategory` union (`hospo` | `cleaning` | `construction` | `warehouse` | `aged-care` | `jobs-general` | `community`), a `groupCategories` array of `{ key, label }` per data-model.md, and a `getCategoryLabel(key)` helper (mirrors the existing `data/categories.ts` convention; FR-013)
-- [ ] T003 Create `data/groups.ts`: define the `GroupPlatform` union (`whatsapp` | `telegram` | `facebook`) and the `Group` interface (`id`, `name`, `platform`, `category: GroupCategory`, `city`, `link`, `description`, `verified: boolean`, `lastVerified: string`) matching data-model.md exactly; seed a small set of real Sydney group entries spanning multiple categories — **every entry MUST have `verified: false` and a valid `lastVerified` date** (constitution IV, FR-011, FR-012) (depends on T002)
-- [ ] T004 [P] Unit test `tests/unit/groups/groups-data.test.ts`: asserts every entry in `groups` has all required fields populated (`city` and `lastVerified` never empty/missing), and asserts **zero** entries have `verified: true` — this is the trust-rule guardrail for FR-011/FR-012 and must fail loudly if violated (depends on T003)
-- [ ] T005 [P] Create `components/groups/VerifiedBadge.tsx`: pill badge per DESIGN.md's "Verified badge (group directory)" token spec (`--accent-soft` fill, `--accent-deep` text, pill radius 999, padding 4/10, weight 700); renders only when passed `verified === true` (no fallback "unverified" badge — see research.md R2)
+- [X] T002 [P] Create `lib/groups/categories.ts`: define the `GroupCategory` union (`hospo` | `cleaning` | `construction` | `warehouse` | `aged-care` | `jobs-general` | `community`), a `groupCategories` array of `{ key, label }` per data-model.md, and a `getCategoryLabel(key)` helper (mirrors the existing `data/categories.ts` convention; FR-013)
+- [X] T003 Create `data/groups.ts`: define the `GroupPlatform` union (`whatsapp` | `telegram` | `facebook`) and the `Group` interface (`id`, `name`, `platform`, `category: GroupCategory`, `city`, `link`, `description`, `verified: boolean`, `lastVerified: string`) matching data-model.md exactly; seed a small set of real Sydney group entries spanning multiple categories — **every entry MUST have `verified: false` and a valid `lastVerified` date** (constitution IV, FR-011, FR-012) (depends on T002)
+- [X] T004 [P] Unit test `tests/unit/groups/groups-data.test.ts`: asserts every entry in `groups` has all required fields populated (`city` and `lastVerified` never empty/missing), and asserts **zero** entries have `verified: true` — this is the trust-rule guardrail for FR-011/FR-012 and must fail loudly if violated (depends on T003)
+- [X] T005 [P] Create `components/groups/VerifiedBadge.tsx`: pill badge per DESIGN.md's "Verified badge (group directory)" token spec (`--accent-soft` fill, `--accent-deep` text, pill radius 999, padding 4/10, weight 700); renders only when passed `verified === true` (no fallback "unverified" badge — see research.md R2)
 
 **Checkpoint**: Foundation ready — user story implementation can now begin.
 
@@ -52,9 +52,9 @@ description: "Task list for Group Directory implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T006 [P] [US1] Create `components/groups/GroupCard.tsx`: renders one entry's name, platform label, category, description, and `VerifiedBadge` (only when `verified === true`); a missing/malformed `link` MUST NOT break the card — the join/invite action is omitted or disabled instead (Edge Cases) (depends on T005)
-- [ ] T007 [US1] Create `components/groups/GroupsPage.tsx` (`"use client"`): imports `groups` from `data/groups.ts`, renders entries grouped/labeled by `category` via `GroupCard` (Acceptance Scenario 2); renders an explicit "No groups available yet" state when `groups.length === 0` (FR-006) (depends on T006, T003)
-- [ ] T008 [US1] Implement `app/groups/page.tsx`: static `generateMetadata` (title `Groups | OZMate` + a real meta description describing the Sydney job-group directory), renders `GroupsPage`, link back to home (depends on T007)
+- [X] T006 [P] [US1] Create `components/groups/GroupCard.tsx`: renders one entry's name, platform label, category, description, and `VerifiedBadge` (only when `verified === true`); a missing/malformed `link` MUST NOT break the card — the join/invite action is omitted or disabled instead (Edge Cases) (depends on T005)
+- [X] T007 [US1] Create `components/groups/GroupsPage.tsx` (`"use client"`): imports `groups` from `data/groups.ts`, renders entries grouped/labeled by `category` via `GroupCard` (Acceptance Scenario 2); renders an explicit "No groups available yet" state when `groups.length === 0` (FR-006) (depends on T006, T003)
+- [X] T008 [US1] Implement `app/groups/page.tsx`: static `generateMetadata` (title `Groups | OZMate` + a real meta description describing the Sydney job-group directory), renders `GroupsPage`, link back to home (depends on T007)
 
 **Checkpoint**: User Story 1 is fully functional and independently testable — `/groups` lists every group correctly, with no filter or report action required yet.
 
@@ -68,8 +68,8 @@ description: "Task list for Group Directory implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Create `components/groups/CategoryFilter.tsx`: renders a control (buttons or a select) listing `groupCategories` from `lib/groups/categories.ts` plus an "All" option; calls an `onChange(category | "all")` prop — has no knowledge of the groups data itself (depends on T002)
-- [ ] T010 [US2] Extend `components/groups/GroupsPage.tsx`: add `selectedCategory` state (`useState<GroupCategory | "all">("all")`), render `CategoryFilter` above the list, filter the rendered `groups` by `selectedCategory` when not `"all"` with no page reload (SC-005); render an explicit "No groups in this category yet" empty state when a specific category filter yields zero matches (FR-005) — distinct from the "no groups at all" state added in T007 (depends on T007, T009)
+- [X] T009 [US2] Create `components/groups/CategoryFilter.tsx`: renders a control (buttons or a select) listing `groupCategories` from `lib/groups/categories.ts` plus an "All" option; calls an `onChange(category | "all")` prop — has no knowledge of the groups data itself (depends on T002)
+- [X] T010 [US2] Extend `components/groups/GroupsPage.tsx`: add `selectedCategory` state (`useState<GroupCategory | "all">("all")`), render `CategoryFilter` above the list, filter the rendered `groups` by `selectedCategory` when not `"all"` with no page reload (SC-005); render an explicit "No groups in this category yet" empty state when a specific category filter yields zero matches (FR-005) — distinct from the "no groups at all" state added in T007 (depends on T007, T009)
 
 **Checkpoint**: User Stories 1 and 2 both work independently — browsing and filtering are both functional.
 
@@ -83,8 +83,8 @@ description: "Task list for Group Directory implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T011 [P] [US3] Create `components/groups/ReportLinkAction.tsx`: renders an `<a href="mailto:...">` anchor to the fixed contact address — currently the placeholder `hello@ozmate.app` with a `// TODO: replace with real OZMate contact address before launch — see docs/pre-launch-checklist.md` comment at the address — with `subject`/`body` URL-encoded to include the group's `name` and `id` (FR-007)
-- [ ] T012 [US3] Extend `components/groups/GroupCard.tsx` to render `ReportLinkAction` for its entry (depends on T006, T011)
+- [X] T011 [P] [US3] Create `components/groups/ReportLinkAction.tsx`: renders an `<a href="mailto:...">` anchor to the fixed contact address — currently the placeholder `hello@ozmate.app` with a `// TODO: replace with real OZMate contact address before launch — see docs/pre-launch-checklist.md` comment at the address — with `subject`/`body` URL-encoded to include the group's `name` and `id` (FR-007)
+- [X] T012 [US3] Extend `components/groups/GroupCard.tsx` to render `ReportLinkAction` for its entry (depends on T006, T011)
 
 **Checkpoint**: All three user stories are independently functional.
 
@@ -94,11 +94,11 @@ description: "Task list for Group Directory implementation"
 
 **Purpose**: Final verification across all stories per quickstart.md and the constitution's quality gates.
 
-- [ ] T013 [P] Unit test `tests/unit/groups/GroupsPage.test.tsx`: selecting a category filters the rendered list, clearing/selecting "All" restores every entry, selecting a category with zero entries shows its empty state, and (with a mocked/empty `groups` array) zero total entries shows the "no groups yet" state
-- [ ] T014 [P] Run `npm run typecheck` and `npm run lint`; fix any errors across all files touched by this feature
-- [ ] T015 Run `quickstart.md` scenarios 1–5 (browse all groups, filter by category, report a dead/dodgy link, empty directory state, verified-flag safety `grep` check)
-- [ ] T016 [P] Run a mobile Lighthouse audit on `/groups` (or a manual ~380px visual/DOM audit if the Lighthouse CLI is unavailable); confirm Performance/Accessibility/SEO ≥ 90 (constitution V)
-- [ ] T017 Verify offline behaviour: `npm run build && npm run start`, visit `/groups`, go offline, reload — page still renders via the existing service worker (contracts/routes.md cross-cutting guarantee)
+- [X] T013 [P] Unit test `tests/unit/groups/GroupsPage.test.tsx`: selecting a category filters the rendered list, clearing/selecting "All" restores every entry, selecting a category with zero entries shows its empty state, and (with a mocked/empty `groups` array) zero total entries shows the "no groups yet" state
+- [X] T014 [P] Run `npm run typecheck` and `npm run lint`; fix any errors across all files touched by this feature
+- [X] T015 Run `quickstart.md` scenarios 1–5 (browse all groups, filter by category, report a dead/dodgy link, empty directory state, verified-flag safety `grep` check)
+- [X] T016 [P] Run a mobile Lighthouse audit on `/groups` (or a manual ~380px visual/DOM audit if the Lighthouse CLI is unavailable); confirm Performance/Accessibility/SEO ≥ 90 (constitution V)
+- [X] T017 Verify offline behaviour: `npm run build && npm run start`, visit `/groups`, go offline, reload — page still renders via the existing service worker (contracts/routes.md cross-cutting guarantee)
 
 ---
 
