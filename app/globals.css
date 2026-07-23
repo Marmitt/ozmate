@@ -33,8 +33,10 @@
   --danger: #c2452f;
 }
 
+/* Dark palette applies when the system prefers dark, unless the user has
+   explicitly picked light via the theme toggle (data-theme="light"). */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #241f18;
     --bg-alt: #2c2519;
     --surface: #332b1f;
@@ -52,6 +54,27 @@
 
     --terracotta-soft: #3a271c;
   }
+}
+
+/* Same dark palette, forced regardless of system preference when the user
+   has explicitly picked dark via the theme toggle. */
+:root[data-theme="dark"] {
+  --bg: #241f18;
+  --bg-alt: #2c2519;
+  --surface: #332b1f;
+  --text: #f0e6d6;
+  --text-muted: #c3b49a;
+  --text-dim: #8f8168;
+  --border: #40382a;
+  --border-strong: #4f4531;
+
+  --accent-soft: #24350f;
+  --accent-text: #7ed957;
+
+  --ochre-soft: #3a2f1a;
+  --ochre-text: #d9a44c;
+
+  --terracotta-soft: #3a271c;
 }
 
 body {

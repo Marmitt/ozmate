@@ -109,6 +109,12 @@ No serif. Sans wins for a plain-spoken, practical-guide tone.
 - Pill, radius 999, padding 4/10, weight 700, small caps or icon + text.
 - Fill `--accent-soft`, text `--accent-text` (not `--accent-deep`; see Contrast rules in §2). Ties "verified" to the same trust-green as progress, since it's the same kind of trust signal.
 
+**Theme toggle** (persistent, all pages)
+- 3-way segmented pill: Auto, Light, Dark. Radius 999, padding 4/10, weight 700, matches the tag/chip family sizing.
+- Fill `--bg-alt`, border 1px `--border`. Active option: `--accent-soft` fill, `--accent-text` text. Inactive options: `--text-muted`, hover `--surface`.
+- Fixed `bottom-4 right-4`, above page content, on every page via the root layout.
+- Backed by `data-theme="light"|"dark"` on `<html>`, set via `localStorage` (`ozmate.theme.v1`) and a `beforeInteractive` inline script so there is no flash of the wrong theme on load. Auto means no explicit override, so the page follows the OS `prefers-color-scheme`.
+
 **Document surface**
 - Reading column — 720px, 16px body, 1.6 line-height, callouts in `--terracotta-soft` per above.
 
