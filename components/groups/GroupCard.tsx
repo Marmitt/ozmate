@@ -32,7 +32,7 @@ export function GroupCard({ group }: { group: Group }) {
           href={group.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-block text-sm font-semibold text-accent-deep underline"
+          className="mt-3 inline-block text-sm font-semibold text-accent-text underline"
         >
           Join group
         </a>

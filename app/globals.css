@@ -3,20 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --bg: #fffdf8;
-  --bg-alt: #faf5ec;
-  --surface: #f0e6d6;
+  --bg: #fffefc;
+  --bg-alt: #fdf9ee;
+  --surface: #f6efd9;
   --text: #362e24;
   --text-muted: #766b59;
   --text-dim: #a89a84;
-  --border: #e6d9c2;
-  --border-strong: #d1bb95;
+  --border: #ece2c5;
+  --border-strong: #d7c498;
 
-  --accent: #58cc02;
-  --accent-hover: #4cad00;
-  --accent-deep: #3d8a00;
-  --accent-soft: #e8f8d8;
-  --accent-text: #2f6b00;
+  /* fixed dark text for use on top of --accent. The accent fill stays
+     light/bright in both color schemes, so its text color must not
+     invert with --text or it becomes illegible in dark mode */
+  --on-accent: #362e24;
+
+  --accent: #8ed928;
+  --accent-hover: #7bc720;
+  --accent-deep: #245f28;
+  --accent-soft: #eef9d9;
+  --accent-text: #245f28;
 
   --ochre: #c68a2e;
   --ochre-soft: #f5e6c8;

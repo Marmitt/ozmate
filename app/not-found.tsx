@@ -17,7 +17,7 @@ export default function NotFound() {
         </Link>
         <Link
           href="/"
-          className="rounded-xl bg-accent px-4 py-2 font-semibold text-white shadow-[0_4px_0_0_var(--accent-deep)]"
+          className="rounded-xl bg-accent px-4 py-2 font-semibold text-on-accent shadow-[0_4px_0_0_var(--accent-deep)]"
         >
           Go home
         </Link>

@@ -11,7 +11,7 @@ export function SourcesList({ sources }: { sources: GuideSource[] }) {
               href={source.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-accent-deep underline"
+              className="font-semibold text-accent-text underline"
             >
               {source.label}
             </a>

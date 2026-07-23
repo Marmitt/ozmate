@@ -13,21 +13,25 @@ Mood: warm, grounded, encouraging — never gamified, never institutional.
 ## 2. Color Palette & Roles
 
 ```
-/* document base — warmed from Notion's grey-beige toward sand */
---bg:              #fffdf8
---bg-alt:          #faf5ec
---surface:         #f0e6d6
+/* document base: bright warm sand ("Lime Pop" palette, v2) */
+--bg:              #fffefc
+--bg-alt:          #fdf9ee
+--surface:         #f6efd9
 --text:            #362e24
 --text-muted:      #766b59
 --text-dim:        #a89a84
---border:          #e6d9c2
---border-strong:   #d1bb95
+--border:          #ece2c5
+--border-strong:   #d7c498
 
-/* progress + CTA — leaf green, kept from Duolingo (checklist tick-off mechanic) */
---accent:          #58cc02
---accent-hover:    #4cad00
---accent-deep:     #3d8a00
---accent-soft:     #e8f8d8
+/* fixed dark text for content on top of --accent, see Contrast rules below */
+--on-accent:       #362e24
+
+/* progress + CTA: bright lime-green, kept from Duolingo (checklist tick-off mechanic) */
+--accent:          #8ed928
+--accent-hover:    #7bc720
+--accent-deep:     #245f28
+--accent-soft:     #eef9d9
+--accent-text:     #245f28
 
 /* earth-tone secondary accents — replaces Duolingo's streak/XP signal colors */
 --ochre:           #c68a2e
@@ -46,10 +50,18 @@ Mood: warm, grounded, encouraging — never gamified, never institutional.
 ```
 
 Arbitration:
-- Leaf green (`--accent`) owns CTAs, checklist progress, and tick-off states — untouched, it's the one Duolingo borrow the product depends on.
+- Leaf green (`--accent`) owns CTAs, checklist progress, and tick-off states, untouched. It's the one Duolingo borrow the product depends on. Brightened from the original `#58cc02` to `#8ed928` (v2, "Lime Pop") for a more energetic, less muted feel. See `--accent` history below.
 - Ochre and terracotta replace streak-orange and XP-blue. OZMate isn't gamified (no streaks, no XP, no lessons) — these tones instead cover tags/category chips, guide callouts ("heads up", "worth knowing"), and directory badges. Two tones, not one, so callouts and chips can be visually distinct without introducing a third unrelated hue.
 - `--danger` stays a warmed red rather than folding into terracotta — error states need to read unambiguously as "wrong," and terracotta is too close to ochre/warm-neutral to carry that alone.
-- Document neutrals shift from Notion's cool grey-beige to sand, so the earth-tone motif is present even in structural chrome (borders, surfaces) — not just accent moments.
+- Document neutrals shift from Notion's cool grey-beige to sand, so the earth-tone motif is present even in structural chrome (borders, surfaces), not just accent moments. `--border`/`--border-strong` were relightened in v2 alongside `--surface` so structural chrome doesn't read heavier than the brighter document base around it.
+
+### Contrast rules for `--accent` (read this before touching accent colors)
+
+`--accent` is a bright, light-toned fill in both color schemes, and it has no dark-mode override, unlike most other tokens. That asymmetry matters for anything drawn on top of it:
+
+- **Button/CTA text on `--accent` fill:** use `--on-accent`, never `--text` and never a literal `white`. `--text` flips polarity in dark mode (dark charcoal to light cream) to suit the *page* background, but `--accent` doesn't flip with it, so light cream text on a light lime fill is close to invisible (verified ~1.4:1). `--on-accent` is intentionally fixed with no dark override, so it stays legible against the fill in both modes. Verified 7.70:1 in both schemes.
+- **Text on `--accent-soft` fill (badges), or green text sitting directly on the page (links, "source" citations):** use `--accent-text`, not `--accent-deep`. `--accent-text` *does* have a dark-mode override (`#7ed957`); `--accent-deep` does not, so reusing it for text produced badges/links well under 3:1 in dark mode. `--accent-deep` should stay reserved for decorative, non-text uses (tactile button shadow, chip borders) where dark-mode contrast doesn't apply.
+- Any new component putting text on `--accent` or `--accent-soft` should follow this pattern. Don't reintroduce `--accent-deep` or literal `white` for that purpose.
 
 ## 3. Typography Rules
 
@@ -66,7 +78,7 @@ No serif. Sans wins for a plain-spoken, practical-guide tone.
 
 **Button (primary CTA)**
 - Radius 16, padding 14/24, weight 700.
-- Fill `--accent`, text `#ffffff`, weight 700.
+- Fill `--accent`, text `--on-accent` (fixed dark, see Contrast rules in §2; not `white`/`--text`), weight 700.
 - Tactile bottom shadow: `0 4px 0 0 var(--accent-deep)`. Pressed state shifts to `0 0 0 0` and translateY(2px).
 
 **Button (secondary)**
@@ -95,7 +107,7 @@ No serif. Sans wins for a plain-spoken, practical-guide tone.
 
 **Verified badge** (group directory)
 - Pill, radius 999, padding 4/10, weight 700, small caps or icon + text.
-- Fill `--accent-soft`, text `--accent-deep` — ties "verified" to the same trust-green as progress, since it's the same kind of trust signal.
+- Fill `--accent-soft`, text `--accent-text` (not `--accent-deep`; see Contrast rules in §2). Ties "verified" to the same trust-green as progress, since it's the same kind of trust signal.
 
 **Document surface**
 - Reading column — 720px, 16px body, 1.6 line-height, callouts in `--terracotta-soft` per above.
@@ -163,3 +175,9 @@ Reject: serif body, tactile shadows on cards, any mascot or literal Australian i
 Kept from Notion × Duolingo as-is: leaf green accent family, tactile bottom-shadow buttons, button radius 16, weight 700 CTAs, progress bar pattern, Inter typography, 720px reading column, card radius 12, warm-not-pitch dark mode.
 
 Changed for OZMate: document neutrals warmed from grey-beige to sand; streak-orange and XP-blue retired (no gamification mechanic in-product) and replaced with `--ochre` / `--terracotta` earth tones covering tags, callouts, and directory badges; danger red warmed but kept semantically distinct from terracotta; layout zone labels reframed from "lesson/practice" to "guide/checklist" to match OZMate's actual content types.
+
+## Palette history
+
+- **v1** (initial adaptation): `--accent: #58cc02`, `--bg-alt: #faf5ec`, `--surface: #f0e6d6`. Direct Duolingo leaf-green borrow on a tan-leaning sand base.
+- **v2** ("Lime Pop", current): brightened `--accent` to `#8ed928` and lifted `--bg-alt`/`--surface`/`--border`/`--border-strong` toward a lighter, less-tan cream. Feedback was that v1 read too dark and heavy, especially the green and the background. Also introduced `--on-accent` and shifted badge/link text from `--accent-deep` to `--accent-text`, fixing a dark-mode contrast failure that predated this change (see Contrast rules in §2) and would have gotten worse with the brighter accent.
+- All v2 pairings were re-verified against WCAG AA (4.5:1 normal text, 3:1 large text/UI) using the standard relative-luminance contrast formula in §2.

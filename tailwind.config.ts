@@ -14,6 +14,7 @@ const config: Config = {
         bg: "var(--bg)",
         "bg-alt": "var(--bg-alt)",
         surface: "var(--surface)",
+        "on-accent": "var(--on-accent)",
         ink: {
           DEFAULT: "var(--text)",
           muted: "var(--text-muted)",
@@ -46,7 +47,7 @@ const config: Config = {
           css: {
             "--tw-prose-body": "var(--text)",
             "--tw-prose-headings": "var(--text)",
-            "--tw-prose-links": "var(--accent-deep)",
+            "--tw-prose-links": "var(--accent-text)",
             "--tw-prose-bold": "var(--text)",
             "--tw-prose-counters": "var(--text-muted)",
             "--tw-prose-bullets": "var(--border-strong)",
