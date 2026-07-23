@@ -24,7 +24,7 @@ const pillars: PillarLink[] = [
     href: "/groups",
     title: "Job Groups",
     description: "Vetted WhatsApp & Telegram groups, Sydney-first.",
-    available: false,
+    available: true,
   },
 ];
 
